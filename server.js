@@ -15,6 +15,8 @@ var Promise = require("bluebird");
 
 mongoose.Promise = Promise;
 
+var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mongo-scraper'; // Replace newsScraper with the name of your local mongodb database
+
 
 // Initialize Express
 var app = express();
@@ -29,7 +31,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/week18day3mongoose");
+mongoose.connect(URI);
 var db = mongoose.connection;
 
 // Show any mongoose errors
